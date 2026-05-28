@@ -1,6 +1,6 @@
 {
   "name": "demodeck",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A polished dark control-panel template for open-source demos — segmented buttons, sliders, color fields, toggles, popovers, a live console terminal, and a copyable code box. Pure CSS + a tiny behavior layer, zero dependencies.",
   "type": "module",
   "main": "demodeck.js",
