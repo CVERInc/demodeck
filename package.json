@@ -1,0 +1,36 @@
+{
+  "name": "demodeck",
+  "version": "0.1.0",
+  "description": "A polished dark control-panel template for open-source demos — segmented buttons, sliders, color fields, toggles, popovers, a live console terminal, and a copyable code box. Pure CSS + a tiny behavior layer, zero dependencies.",
+  "type": "module",
+  "main": "demodeck.js",
+  "style": "demodeck.css",
+  "exports": {
+    ".": "./demodeck.js",
+    "./css": "./demodeck.css"
+  },
+  "files": [
+    "demodeck.css",
+    "demodeck.js",
+    "index.html",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "demo",
+    "showcase",
+    "control-panel",
+    "dashboard",
+    "ui-kit",
+    "dark-theme",
+    "playground",
+    "css",
+    "open-source",
+    "zero-config"
+  ],
+  "license": "MIT",
+  "sideEffects": [
+    "demodeck.js",
+    "*.css"
+  ]
+}

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>demodeck — dark control-panel template for OSS demos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="demodeck.css">
+  <style>
+    /* ── Example-only: the right-column live preview ── */
+    .preview-stage {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 480px;
+      background: var(--dd-surface);
+      border: 1px solid var(--dd-border);
+      border-radius: 22px;
+      padding: 2.5rem;
+      backdrop-filter: blur(30px);
+    }
+    .preview-card {
+      width: 100%; max-width: 320px;
+      padding: 2rem 1.75rem;
+      border-radius: 24px;
+      background: var(--demo-accent, #8b8bff);
+      color: #fff;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      transition: background 0.3s ease, border-radius 0.2s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      text-align: left;
+    }
+    .preview-card.glow { box-shadow: 0 0 0 1px rgba(255,255,255,0.25), 0 0 50px var(--demo-accent, #8b8bff); }
+    .preview-card .eyebrow { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; margin: 0 0 0.6rem; }
+    .preview-card h3 { margin: 0 0 0.5rem; font-size: 1.4rem; }
+    .preview-card p { margin: 0; font-size: 0.9rem; line-height: 1.5; opacity: 0.9; }
+    code { font-family: var(--dd-mono); }
+  </style>
+</head>
+<body class="dd">
+
+  <header class="dd-header">
+    <a class="dd-logo" href="#">
+      <h1>demodeck</h1>
+      <span class="dd-badge">demo</span>
+    </a>
+    <div class="toggle-container">
+      <span class="toggle-label">glow</span>
+      <label class="switch">
+        <input type="checkbox" id="glow-toggle">
+        <span class="slider-toggle"></span>
+      </label>
+    </div>
+    <a class="dd-ghlink" href="#" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      GitHub
+    </a>
+  </header>
+
+  <main class="dd-main">
+
+    <!-- ── Left: control panel ── -->
+    <div class="control-panel">
+
+      <div class="panel-section">
+        <div class="panel-section-header">
+          <h3>
+            <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Theme
+          </h3>
+          <button class="header-edit-btn" data-popover="#theme-popover">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            Edit
+          </button>
+          <div class="popover-card" id="theme-popover">
+            <div class="popover-row">
+              <label class="popover-label">Accent color</label>
+              <div class="color-field" id="accent-field">
+                <label class="color-picker-label">
+                  <input type="color" value="#8b8bff" class="native-color-picker">
+                  <span class="color-preview-circle" style="background-color:#8b8bff;"></span>
+                </label>
+                <input type="text" class="hex-text-input" value="#8b8bff" maxlength="7">
+              </div>
+            </div>
+            <div class="popover-row">
+              <label class="popover-label">Density</label>
+              <select class="dd-select" id="density-select">
+                <option value="cozy">Cozy</option>
+                <option value="compact">Compact</option>
+                <option value="comfortable">Comfortable</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="color-presets" id="accent-presets">
+          <button class="color-btn active" data-color="#8b8bff" style="background:#8b8bff" title="Indigo"></button>
+          <button class="color-btn" data-color="#10b981" style="background:#10b981" title="Emerald"></button>
+          <button class="color-btn" data-color="#f59e0b" style="background:#f59e0b" title="Amber"></button>
+          <button class="color-btn" data-color="#ef4444" style="background:#ef4444" title="Red"></button>
+          <button class="color-btn" data-color="#06b6d4" style="background:#06b6d4" title="Cyan"></button>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <h3>
+          <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+          Shape
+        </h3>
+        <div class="option-group" id="shape-group" style="--cols:3; margin-bottom:1rem;">
+          <button class="option-btn active" data-value="Card">Card</button>
+          <button class="option-btn" data-value="Pill">Pill</button>
+          <button class="option-btn" data-value="Square">Square</button>
+        </div>
+        <div class="slider-container">
+          <div class="slider-header"><span>Corner radius</span><span class="val" id="radius-val">24px</span></div>
+          <input type="range" id="radius-slider" min="0" max="48" value="24" data-output="#radius-val" data-suffix="px">
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <h3>
+          <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Live console
+        </h3>
+        <div class="live-console">
+          <div class="terminal-header">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">demodeck — events</span>
+          </div>
+          <div class="terminal-body" id="console">
+            <div class="console-log-line system">[system] Ready. Try the controls.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <h3>
+          <svg class="svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          Install
+        </h3>
+        <div class="code-snippet-box">
+          <div class="code-header">
+            <span>HTML</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><code>&lt;link rel="stylesheet" href="demodeck.css"&gt;
+&lt;script type="module" src="demodeck.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Right: live preview ── -->
+    <div class="preview-stage">
+      <div class="preview-card" id="preview" style="--demo-accent:#8b8bff;">
+        <p class="eyebrow" id="preview-eyebrow">Card</p>
+        <h3>Live preview</h3>
+        <p>Every control on the left drives this card and logs to the console. This is your project's demo surface — swap it for whatever you're showing off.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="dd-footer">
+    <div class="footer-links">
+      <a class="link-underline" href="#">Docs</a>
+      <span class="footer-separator">|</span>
+      <a class="link-underline" href="#">GitHub</a>
+      <span class="footer-separator">|</span>
+      <a class="link-underline" href="#">npm</a>
+    </div>
+    <div class="footer-links secondary">
+      <a class="link-underline" href="#">demodeck — a dark control-panel template</a>
+      <span class="footer-separator">|</span>
+      <a class="link-underline" href="#">MIT License</a>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { enhance, log } from './demodeck.js';
+    enhance();
+
+    const consoleEl = document.getElementById('console');
+    const preview = document.getElementById('preview');
+    const eyebrow = document.getElementById('preview-eyebrow');
+
+    // Accent color — from the popover color field…
+    document.getElementById('accent-field').addEventListener('dd:color', (e) => {
+      preview.style.setProperty('--demo-accent', e.detail.value);
+      syncPresets(e.detail.value);
+      log(consoleEl, `Accent → ${e.detail.value}`, 'state');
+    });
+    // …and from the preset dots.
+    document.getElementById('accent-presets').addEventListener('click', (e) => {
+      const btn = e.target.closest('.color-btn');
+      if (!btn) return;
+      preview.style.setProperty('--demo-accent', btn.dataset.color);
+      syncPresets(btn.dataset.color);
+      log(consoleEl, `Accent → ${btn.dataset.color}`, 'state');
+    });
+    function syncPresets(color) {
+      document.querySelectorAll('#accent-presets .color-btn').forEach((b) =>
+        b.classList.toggle('active', b.dataset.color.toLowerCase() === color.toLowerCase()));
+    }
+
+    // Shape (segmented option group)
+    document.getElementById('shape-group').addEventListener('dd:change', (e) => {
+      const map = { Card: '24px', Pill: '48px', Square: '4px' };
+      const radius = map[e.detail.value];
+      preview.style.borderRadius = radius;
+      eyebrow.textContent = e.detail.value;
+      const slider = document.getElementById('radius-slider');
+      slider.value = parseInt(radius, 10);
+      slider.dispatchEvent(new Event('input'));
+      log(consoleEl, `Shape → ${e.detail.value} (${radius})`, 'info');
+    });
+
+    // Radius slider
+    document.getElementById('radius-slider').addEventListener('input', (e) => {
+      preview.style.borderRadius = e.target.value + 'px';
+    });
+
+    // Density select
+    document.getElementById('density-select').addEventListener('change', (e) => {
+      const pad = { cozy: '2rem 1.75rem', compact: '1.25rem 1.25rem', comfortable: '2.75rem 2.25rem' };
+      preview.style.padding = pad[e.target.value];
+      log(consoleEl, `Density → ${e.target.value}`, 'info');
+    });
+
+    // Glow toggle
+    document.getElementById('glow-toggle').addEventListener('change', (e) => {
+      preview.classList.toggle('glow', e.target.checked);
+      log(consoleEl, `Glow ${e.target.checked ? 'ON' : 'OFF'}`, 'system');
+    });
+  </script>
+</body>
+</html>
