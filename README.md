@@ -6,6 +6,8 @@
 [![Zero dependencies](https://img.shields.io/badge/dependencies-0-success)](#)
 [![Pure CSS](https://img.shields.io/badge/core-pure%20CSS-blue)](#)
 
+🌐 日本語の紹介 → [cver.net/ja-jp/oss/demodeck](https://cver.net/ja-jp/oss/demodeck) ・ 繁體中文介紹 → [cver.net/zh-tw/oss/demodeck](https://cver.net/zh-tw/oss/demodeck)
+
 > **[Live demo →](https://oss.cver.net/demodeck/)**
 
 ---
