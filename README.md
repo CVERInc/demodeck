@@ -3,10 +3,10 @@
 > **A polished dark "control panel" template for open-source demos.** A premium header, a two-column layout, and a kit of dark-themed controls — segmented buttons, sliders, color fields, toggles, styled selects, popovers, a live console terminal, and a copyable code box. Drop a live preview on the right and you have an interactive playground for your library in minutes.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Zero dependencies](https://img.shields.io/badge/dependencies-0-success)](#)
-[![Pure CSS](https://img.shields.io/badge/core-pure%20CSS-blue)](#)
+![Zero dependencies](https://img.shields.io/badge/dependencies-0-success)
+![Pure CSS](https://img.shields.io/badge/core-pure%20CSS-blue)
 
-🌐 日本語の紹介 → [cver.net/ja-jp/oss/demodeck](https://cver.net/ja-jp/oss/demodeck) ・ 繁體中文介紹 → [cver.net/zh-tw/oss/demodeck](https://cver.net/zh-tw/oss/demodeck)
+🌐 [日本語](https://cver.net/ja-jp/oss/demodeck) · [한국어](https://cver.net/ko-kr/oss/demodeck) · [繁體中文](https://cver.net/zh-tw/oss/demodeck)
 
 > **[Live demo →](https://oss.cver.net/demodeck/)**
 
