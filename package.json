@@ -5,6 +5,9 @@
   "type": "module",
   "main": "demodeck.js",
   "style": "demodeck.css",
+  "scripts": {
+    "test": "node --test \"test/**/*.test.mjs\""
+  },
   "exports": {
     ".": "./demodeck.js",
     "./css": "./demodeck.css"
