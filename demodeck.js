@@ -29,9 +29,21 @@
 const HEX_RE = /^#[0-9a-f]{6}$/i;
 let docListenerAdded = false;
 
+// Safe querySelector: an empty or malformed selector (e.g. data-output="") would
+// otherwise throw a SyntaxError. Authoring slips like that should be inert, not
+// abort enhance() and take the rest of the page's wiring down with them.
+function safeQuery(selector, scope = document) {
+  if (typeof selector !== 'string' || selector.trim() === '') return null;
+  try {
+    return scope.querySelector(selector);
+  } catch (_) {
+    return null; // invalid selector string
+  }
+}
+
 function resolve(elOrSelector, scope = document) {
   if (!elOrSelector) return null;
-  return typeof elOrSelector === 'string' ? scope.querySelector(elOrSelector) : elOrSelector;
+  return typeof elOrSelector === 'string' ? safeQuery(elOrSelector, scope) : elOrSelector;
 }
 
 // Wire an element at most once, so enhance() is safe to call repeatedly.
@@ -46,7 +58,7 @@ function once(el, tag) {
 function wireCopy(btn) {
   btn.addEventListener('click', async () => {
     const target = btn.dataset.copy
-      ? document.querySelector(btn.dataset.copy)
+      ? safeQuery(btn.dataset.copy)
       : btn.closest('.code-snippet-box')?.querySelector('code');
     if (!target) return;
     try {
@@ -70,7 +82,7 @@ function closeAllPopovers() {
 }
 
 function wirePopover(btn) {
-  const card = document.querySelector(btn.dataset.popover);
+  const card = safeQuery(btn.dataset.popover);
   if (!card) return;
   btn.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -118,7 +130,7 @@ function wireColorField(field) {
 
 /* ── Range outputs ─────────────────────────────────────────────────────── */
 function wireRange(input) {
-  const out = document.querySelector(input.dataset.output);
+  const out = safeQuery(input.dataset.output);
   if (!out) return;
   const suffix = input.dataset.suffix || '';
   const render = () => { out.textContent = input.value + suffix; };
