@@ -29,6 +29,14 @@
   --dd-radius: 16px;
   --dd-font: "Plus Jakarta Sans", "Nunito", system-ui, -apple-system, sans-serif;
   --dd-mono: "SFMono-Regular", "Courier New", Courier, monospace;
+
+  /* Continuous-curvature (squircle) corners. Progressive enhancement only:
+     corner-shape is Chromium-only as of mid-2026 — Safari/WebKit and Firefox
+     ignore it and keep the plain border-radius arc, so zero visual regression.
+     corner-shape needs a non-zero border-radius to take effect and is not
+     inherited, but this custom property is, so finite-radius surfaces below
+     just do `corner-shape: var(--corner);`. */
+  --corner: squircle;
 }
 
 .dd * { box-sizing: border-box; }
@@ -80,6 +88,7 @@ body.dd,
   gap: 0.5rem;
   padding: 0.5rem 1rem;
   border-radius: 8px;
+  corner-shape: var(--corner);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--dd-border);
   transition: all 0.2s ease;
@@ -107,6 +116,7 @@ body.dd,
   background: var(--dd-surface);
   border: 1px solid var(--dd-border);
   border-radius: 22px;
+  corner-shape: var(--corner);
   padding: 2.25rem;
   backdrop-filter: blur(30px);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
@@ -144,6 +154,7 @@ body.dd,
   background: rgba(0, 0, 0, 0.2);
   padding: 0.35rem;
   border-radius: 12px;
+  corner-shape: var(--corner);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -156,6 +167,7 @@ body.dd,
   font-size: 0.85rem;
   font-weight: 600;
   border-radius: 8px;
+  corner-shape: var(--corner);
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: center;
@@ -251,6 +263,7 @@ input[type="range"]::-moz-range-thumb {
   border: 1px solid var(--dd-border);
   color: var(--dd-text);
   border-radius: 8px;
+  corner-shape: var(--corner);
   outline: none; cursor: pointer;
   transition: all 0.2s;
   appearance: none;
@@ -267,6 +280,7 @@ input[type="range"]::-moz-range-thumb {
   background: rgba(0, 0, 0, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
+  corner-shape: var(--corner);
   font-family: var(--dd-mono);
   overflow: hidden;
   margin-top: 0.5rem;
@@ -308,6 +322,7 @@ input[type="range"]::-moz-range-thumb {
   background: rgba(12, 13, 16, 0.95);
   border: 1px solid var(--dd-border);
   border-radius: 8px;
+  corner-shape: var(--corner);
   overflow: hidden;
   margin-top: 0.5rem;
 }
@@ -323,7 +338,7 @@ input[type="range"]::-moz-range-thumb {
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--dd-text);
   padding: 0.15rem 0.4rem;
-  border-radius: 4px; cursor: pointer; font: inherit; font-size: 0.7rem;
+  border-radius: 4px; corner-shape: var(--corner); cursor: pointer; font: inherit; font-size: 0.7rem;
   transition: all 0.2s;
 }
 .copy-btn:hover { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.2); }
@@ -338,7 +353,7 @@ input[type="range"]::-moz-range-thumb {
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--dd-text-muted);
   font: inherit; font-size: 0.75rem; font-weight: 600;
-  padding: 0.3rem 0.65rem; border-radius: 6px; cursor: pointer;
+  padding: 0.3rem 0.65rem; border-radius: 6px; corner-shape: var(--corner); cursor: pointer;
   transition: all 0.2s ease;
 }
 .header-edit-btn:hover:not(:disabled) {
@@ -359,6 +374,7 @@ input[type="range"]::-moz-range-thumb {
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
+  corner-shape: var(--corner);
   padding: 1rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   z-index: 100;
@@ -389,6 +405,7 @@ input[type="range"]::-moz-range-thumb {
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 6px;
+  corner-shape: var(--corner);
   color: var(--dd-text);
   font-family: var(--dd-mono);
   font-size: 0.8rem; font-weight: 600;
@@ -405,6 +422,7 @@ input[type="range"]::-moz-range-thumb {
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 6px;
+  corner-shape: var(--corner);
   color: var(--dd-text);
   outline: none;
   transition: all 0.2s;
