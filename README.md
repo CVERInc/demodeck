@@ -1,6 +1,6 @@
 # demodeck
 
-> **A polished dark "control panel" template for open-source demos.** A premium header, a two-column layout, and a kit of dark-themed controls — segmented buttons, sliders, color fields, toggles, styled selects, popovers, a live console terminal, and a copyable code box. Drop a live preview on the right and you have an interactive playground for your library in minutes.
+> **A dark "control panel" template for open-source demos.** A header, a two-column layout, and a kit of dark-themed controls — segmented buttons, sliders, color fields, toggles, styled selects, popovers, a live console terminal, and a copyable code box. Drop a live preview on the right and you have an interactive playground for your library in minutes.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Zero dependencies](https://img.shields.io/badge/dependencies-0-success)
@@ -14,7 +14,7 @@
 
 ## Why
 
-Every good OSS project deserves a demo where people can *play* with it — toggle options, drag sliders, watch the result update live. Building that chrome from scratch each time is a chore. `demodeck` gives you the whole interactive shell, dark and premium out of the box, so you can spend your effort on the thing you're actually demoing.
+Every good OSS project deserves a demo where people can *play* with it — toggle options, drag sliders, watch the result update live. Building that chrome from scratch each time is a chore. `demodeck` gives you the whole interactive shell, dark out of the box, so you can spend your effort on the thing you're actually demoing.
 
 It pairs naturally with a live preview — including [liquidframe](https://github.com/CVERInc/liquidframe) if your project is mobile/web UI.
 
