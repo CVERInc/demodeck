@@ -169,6 +169,23 @@ test('color field syncs picker, hex and preview and emits dd:color', () => {
   assert.equal(preview.style.backgroundColor, '#ef4444');
 });
 
+test('color field expands 3-digit hex shorthand to 6-digit', () => {
+  reset();
+  const picker = h('input', { type: 'color', value: '#8b8bff' });
+  const preview = h('span', { class: 'color-preview-circle' });
+  const hex = h('input', { type: 'text', class: 'hex-text-input', value: '#8b8bff' });
+  const field = h('div', { class: 'color-field' }, [picker, preview, hex]);
+  document.body.appendChild(field);
+  enhance();
+  let got = null;
+  field.addEventListener('dd:color', (e) => { got = e.detail.value; });
+  hex.value = '#fff';
+  dispatch(hex, 'input');
+  assert.equal(got, '#ffffff');
+  assert.equal(picker.value, '#ffffff');
+  assert.equal(preview.style.backgroundColor, '#ffffff');
+});
+
 test('color field ignores invalid hex input', () => {
   reset();
   const picker = h('input', { type: 'color', value: '#8b8bff' });

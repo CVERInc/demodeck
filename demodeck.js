@@ -27,6 +27,7 @@
    =========================================================================== */
 
 const HEX_RE = /^#[0-9a-f]{6}$/i;
+const HEX_RE_SHORT = /^#([0-9a-f])([0-9a-f])([0-9a-f])$/i;
 let docListenerAdded = false;
 
 // Safe querySelector: an empty or malformed selector (e.g. data-output="") would
@@ -113,6 +114,8 @@ function wireColorField(field) {
   const apply = (value, from) => {
     let v = value.trim();
     if (v && !v.startsWith('#')) v = '#' + v;
+    const short = v.match(HEX_RE_SHORT);
+    if (short) v = '#' + short.slice(1).map((c) => c + c).join('');
     if (!HEX_RE.test(v)) return;
     if (picker && from !== 'picker') picker.value = v;
     if (hex && from !== 'hex') hex.value = v;
